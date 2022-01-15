@@ -10,6 +10,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class WelcomeComponent implements OnInit {
   message = "Welcome message";
+  welcomeMessageFromService: string;
   name = "";
 
   //ActivatedRouter
@@ -23,8 +24,17 @@ export class WelcomeComponent implements OnInit {
   }
 
   getWelcomeMessage() {
-    this.service.executeHelloWorldBeanService().subscribe();
+    this.service
+      .executeHelloWorldBeanService()
+      //this subscribe is only declaring the message, does no execute it immediately
+      .subscribe((response) => this.handleSuccessfulResponse(response));
+
+    console.log("last line of getWelcomeMessage");
     // console.log("get welcome message");
+  }
+
+  handleSuccessfulResponse(response) {
+    this.welcomeMessageFromService = response.message;
   }
 }
 
