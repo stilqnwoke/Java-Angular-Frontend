@@ -1,3 +1,4 @@
+import { WelcomeDataService } from "./../service/data/welcome-data.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AppComponent } from "./../app.component";
 import { Component, OnInit } from "@angular/core";
@@ -12,10 +13,18 @@ export class WelcomeComponent implements OnInit {
   name = "";
 
   //ActivatedRouter
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private service: WelcomeDataService
+  ) {}
 
   ngOnInit() {
     this.name = this.route.snapshot.params["name"];
+  }
+
+  getWelcomeMessage() {
+    this.service.executeHelloWorldBeanService();
+    // console.log("get welcome message");
   }
 }
 
