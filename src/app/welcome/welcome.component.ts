@@ -36,6 +36,19 @@ export class WelcomeComponent implements OnInit {
     // console.log("get welcome message");
   }
 
+  getWelcomeMessageVariable() {
+    this.service
+      .executeHelloWorldPathVariableService(this.name)
+      //this subscribe is only declaring the message, does no execute it immediately
+      .subscribe(
+        (response) => this.handleSuccessfulResponse(response),
+        (error) => this.handleErrorResponse(error)
+      );
+
+    console.log("last line of getWelcomeMessage");
+    // console.log("get welcome message");
+  }
+
   handleSuccessfulResponse(response) {
     this.welcomeMessageFromService = response.message;
   }
@@ -43,6 +56,14 @@ export class WelcomeComponent implements OnInit {
   handleErrorResponse(error) {
     this.welcomeMessageFromService = error.error.message;
   }
+
+  // handleSuccessfulResponseVariable(response) {
+  //   this.welcomeMessageFromService = response.message;
+  // }
+
+  // handleErrorResponseVariable(error) {
+  //   this.welcomeMessageFromService = error.error.message;
+  // }
 }
 
 export class Class1 {}

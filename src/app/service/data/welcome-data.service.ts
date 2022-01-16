@@ -5,6 +5,10 @@ export class HelloWorldBean {
   constructor(public message: string) {}
 }
 
+export class HelloWorldPathVariable {
+  constructor(public message: string) {}
+}
+
 @Injectable({
   providedIn: "root",
 })
@@ -14,6 +18,13 @@ export class WelcomeDataService {
   executeHelloWorldBeanService() {
     return this.http.get<HelloWorldBean>(
       "http://localhost:8080/hello-world-bean"
+    );
+    // console.log("Test");
+  }
+
+  executeHelloWorldPathVariableService(name) {
+    return this.http.get<HelloWorldPathVariable>(
+      `http://localhost:8080/hello-world/path-variable/${name}`
     );
     // console.log("Test");
   }
