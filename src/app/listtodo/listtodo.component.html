@@ -14,7 +14,8 @@
         <th>Description</th>
         <th>Target Date</th>
         <th>Is completed</th>
-        <th>Actions</th>
+        <th>Update</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,11 @@
         <!-- date and uppercase are pipes used to modify the date -->
         <td>{{ todo.targetDate | date | uppercase }}</td>
         <td>{{ todo.done }}</td>
+        <td>
+          <button (click)="updateTodo(todo.id)" class="btn btn-success">
+            Update
+          </button>
+        </td>
         <td>
           <button (click)="deleteTodo(todo.id)" class="btn btn-warning">
             Delete
