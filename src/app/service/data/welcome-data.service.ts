@@ -40,7 +40,7 @@ export class WelcomeDataService {
     let username = "stkwe";
     let password = "dummy";
     let basicAuthHeaderString =
-      "Basic" + window.btoa(username + ":" + password);
+      "Basic " + window.btoa(username + ":" + password);
 
     return basicAuthHeaderString;
   }
