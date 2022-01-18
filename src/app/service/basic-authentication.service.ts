@@ -33,7 +33,7 @@ export class BasicAuthenticationService {
     return sessionStorage.getItem("authenticatedUser");
   }
 
-  getAutheticatedToken() {
+  getAuthenticatedToken() {
     if (this.getAuthenticatedUser()) return sessionStorage.getItem("token");
   }
 

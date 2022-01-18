@@ -23,25 +23,25 @@ export class WelcomeDataService {
   }
 
   executeHelloWorldPathVariableService(name) {
-    let basicAuthHeaderString = this.createBasiAuthenticationHeader();
+    // let basicAuthHeaderString = this.createBasiAuthenticationHeader();
 
-    let headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString,
-    });
+    // let headers = new HttpHeaders({
+    //   Authorization: basicAuthHeaderString,
+    // });
 
     return this.http.get<HelloWorldPathVariable>(
-      `http://localhost:8080/hello-world/path-variable/${name}`,
-      { headers }
+      `http://localhost:8080/basicauth`
+      // { headers }
     );
     // console.log("Test");
   }
 
-  createBasiAuthenticationHeader() {
-    let username = "stkwe";
-    let password = "dummy";
-    let basicAuthHeaderString =
-      "Basic " + window.btoa(username + ":" + password);
+  // createBasiAuthenticationHeader() {
+  //   let username = "stkwe";
+  //   let password = "dummy";
+  //   let basicAuthHeaderString =
+  //     "Basic " + window.btoa(username + ":" + password);
 
-    return basicAuthHeaderString;
-  }
+  //   return basicAuthHeaderString;
+  // }
 }
