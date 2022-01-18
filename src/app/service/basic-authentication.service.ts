@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpHeaders } from "@angular/common/http";
+import { HttpHeaders, HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -7,14 +7,6 @@ import { map } from "rxjs/operators";
 })
 export class BasicAuthenticationService {
   constructor(private http: HttpClient) {}
-
-  authenticate(username, password) {
-    if (username === "stkwe" && password === "dummy") {
-      sessionStorage.setItem("authenticatedUser", username);
-      return true;
-    }
-    return false;
-  }
 
   executeAuthenticationService(username, password) {
     let basicAuthHeaderString =
@@ -29,10 +21,20 @@ export class BasicAuthenticationService {
       .pipe(
         map((data) => {
           sessionStorage.setItem("authenticatedUser", username);
+          sessionStorage.setItem("token", basicAuthHeaderString);
+
           return data;
         })
       );
     // console.log("Test");
+  }
+
+  getAuthenticatedUser() {
+    return sessionStorage.getItem("authenticatedUser");
+  }
+
+  getAutheticatedToken() {
+    if (this.getAuthenticatedUser()) return sessionStorage.getItem("token");
   }
 
   isUserLoggedIn() {
@@ -42,6 +44,7 @@ export class BasicAuthenticationService {
 
   logout() {
     sessionStorage.removeItem("authenticatedUser");
+    sessionStorage.removeItem("token");
   }
 }
 
